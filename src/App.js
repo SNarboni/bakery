@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from "./components/Button"
+import List from "./components/List";
+import Pay from "./components/Pay";
+import Add from "./components/Add";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      activeTab: 'Add',
+      items: [],
+    }
+  }
+
+  selectAdd = () => {
+    this.setState({
+      activeTab: "Add"
+    })
+  }
+
+  selectList = () => {
+    this.setState({
+      activeTab: "List"
+    })
+  }
+
+  selectPay = () => {
+    this.setState({
+      activeTab: "Pay"
+    })
+  }
+
+  addItem = (name, price) =>{
+    item.push(`name : ${name}`,`price : ${price}`)
+    console.log(this.state.items)
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <div className="row">
+            <Button isSelected={this.state.activeTab === "Add" ? "form-control btn btn-primary" : "form-control btn btn-light"} onClick={this.selectAdd}>Add</Button>
+            <Button isSelected={this.state.activeTab === "List" ? "form-control btn btn-primary" : "form-control btn btn-light"} onClick={this.selectList}>List</Button>
+            <Button isSelected={this.state.activeTab === "Pay" ? "form-control btn btn-primary" : "form-control btn btn-light"} onClick={this.selectPay}>Pay</Button>
+          </div>
+          <div class="row">
+            {this.state.activeTab === "Add" && <Add></Add>}
+            {this.state.activeTab === "List" && <List></List>}
+            {this.state.activeTab === "Pay" && <Pay></Pay>}
+          </div>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
