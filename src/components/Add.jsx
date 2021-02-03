@@ -11,11 +11,18 @@ class Add extends React.Component {
 
   updateProductName = (e) => {
     this.setState({ productName: e.target.value });
+    console.log(this.state.productName)
   };
-
+  
   updatePrice = (e) => {
     this.setState({ price: e.target.value });
+    console.log(this.state.price)
   };
+
+  Add = ()=>{
+    this.props.addItem(this.state.productName,this.state.price)
+  }
+
 
   render() {
     return (
@@ -29,7 +36,7 @@ class Add extends React.Component {
           value={this.state.price}
         />
         <p>{this.state.price}€</p>
-        <button onclick>Add</button>
+        <button onClick={this.Add} className="btn btn-primary">Add</button>
       </div>
     );
   }

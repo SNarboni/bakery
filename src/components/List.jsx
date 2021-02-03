@@ -5,6 +5,15 @@ class List extends React.Component {
         return (
             <div>
                 <p>List</p>
+                <ul>
+                    {this.props.itemList.map((items,index) => {
+                        return(
+                            <li key={index}>
+                                {`name : ${items.name}`}<br/>{`price : ${items.price} €`}
+                            </li>
+                        )
+                    })}
+                </ul>
             </div>
         )
     }
